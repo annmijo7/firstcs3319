@@ -1,0 +1,27 @@
+use ajosep54assign2db;
+select * from customer;
+select * from product;
+select * from agent;
+select * from purchase;
+
+-- creating view 
+create view view1 as 
+select customer.firstname,customer.lastname,product.description,purchase.quantity,
+product.cost, purchase.quantity*product.cost as totalcost
+from customer,product,purchase
+where customer.customerid=purchase.customerid 
+and product.productid=purchase.productid
+order by customer.lastname; 
+
+select * from view1;
+-- customers that spent more than 100
+select * from view1 group by firstname having sum(totalcost)>100; 
+
+-- deleting my product
+delete from product where description="Basket";
+select * from product;
+
+-- deleting agents from Springfield
+delete from agent where city="Springfield";
+-- this row is not deleted because of a foreign key constraint. When creating the table, we didn't write ON DELETE CASCADE
+

@@ -1,0 +1,49 @@
+use ajosep54assign2db
+-- 1
+describe product;
+-- 2
+select distinct city from customer;
+-- 3
+select * from agent order by city;
+-- 4
+select firstname,lastname from customer where city="Springfield";
+-- 5
+select customer.lastname from customer,agent 
+where customer.agentid=agent.agentid and agent.firstname="Regis";
+-- 6
+select description from product where description like "%pad%";
+-- 7
+select customer.firstname, product.description, purchase.quantity
+from customer, product, purchase where customer.customerid=purchase.customerid
+and product.productid=purchase.productid;
+-- 8
+select sum(quantity) as "Homer's Total Purachases" from purchase, customer 
+where firstname="Homer" and purchase.customerid=customer.customerid;
+-- 9
+select customer.firstname,customer.lastname,sum(purchase.quantity) 
+from customer,purchase where customer.customerid=purchase.customerid
+group by purchase.customerid;
+-- 10
+select description,no_of_items from product 
+where productid not in (select productid from purchase);
+-- 11
+select distinct description,no_of_items from purchase,product,customer 
+where purchase.productid=product.productid and customer.customerid=purchase.customerid
+and customer.firstname<>"Fred" and customer.lastname<>"Flinstone";
+-- 12
+select agent.firstname,agent.lastname,customer.firstname,customer.lastname
+from agent,customer where agent.agentid=customer.agentid 
+and agent.city=customer.city;
+-- 13
+select sum(quantity) as "Total no. of knee pads" from purchase,product 
+where purchase.productid=product.productid and product.description="Knee pads";
+-- 14
+select description from product,purchase 
+where product.productid=purchase.productid
+group by purchase.productid
+having count(purchase.productid)>3;
+-- 15
+select agent.firstname,agent.lastname from agent,customer,product,purchase 
+where agent.agentid=customer.agentid and customer.customerid=purchase.customerid
+and purchase.productid=product.productid and product.description="Knee pads";
+	

@@ -1,0 +1,88 @@
+Warning: Using a password on the command line interface can be insecure.
+--------------
+SHOW databases
+--------------
+
+Database
+information_schema
+ajosep54assign2db
+myfirstdb
+mysql
+performance_schema
+--------------
+DROP DATABASE IF EXISTS ajosep54assign2db
+--------------
+
+--------------
+CREATE DATABASE ajosep54assign2db
+--------------
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+--------------
+create table product(productid char(2) NOT NULL,
+description varchar(20),
+cost float,
+no_of_items int,
+primary key(productid))
+--------------
+
+--------------
+create table agent(agentid char(2) NOT NULL, 
+firstname char(30), lastname char(30),
+city char(15),
+commision float,
+primary key(agentid))
+--------------
+
+--------------
+create table customer(customerid char(2) NOT NULL,
+firstname char(30),
+lastname char(30),
+city char(15),
+phoneno varchar(15),
+agentid char(2),
+primary key (customerid),
+foreign key (agentid) references agent(agentid))
+--------------
+
+--------------
+create table purchase(customerid char(2) NOT NULL, 
+productid char(2) NOT NULL, 
+quantity int,
+primary key(customerid,productid), 
+foreign key (customerid) references customer(customerid), 
+foreign key (productid) references product (productid))
+--------------
+
+--------------
+show tables
+--------------
+
+Tables_in_ajosep54assign2db
+agent
+customer
+product
+purchase

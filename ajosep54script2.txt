@@ -1,0 +1,63 @@
+use ajosep54assign2db;
+
+insert into product values ("12","Socks",2.00,100);
+insert into product values ("11","Bike",150.00,200);
+insert into product values ("99","Helmet",29.00,30);
+insert into product values ("88","Roller Blades",75.00,89);
+insert into product values ("78","Knee Pads",12.15,70);
+
+select * from product;
+
+insert into product values ("66","Elbow pads", 14.25, 120);
+insert into product values ("45","Basket", 10.45, 60);
+
+insert into agent values ("99","Hugh","Grant","Springfield",16);
+insert into agent values ("22","Courtney","Cox", "New York", 25);
+insert into agent values ("66","Rosie","ODonnell","Ottawa", 100);
+insert into agent values ("33", "David", "Letterman", "Bedrock", 100);
+insert into agent values ("11", "Regis","Philbin","Boston", 33);
+insert into agent values ("12", "Rosie","Cox","Ottawa", 50);
+insert into agent values ("77", "Jennifer","Lawrence","London",75);
+
+insert into customer values ("21", "Homer", "Simpson", "Springfield", "686-8956",NULL);
+insert into customer values ("31", "Sideshow", "Bob", "Springfield", "686-5555",NULL);
+insert into customer values ("12", "Monty", "Burns", "Springfield", "789-0000",NULL);
+insert into customer values ("15", "Fred", "Flintstone", "Bedrock", "777-2345",NULL);
+insert into customer values ("13", "Super", "Man", "Kypto", "888-1234",NULL);
+insert into customer values ("10", "Barney", "Rubble", "Bedrock", "777-1234",NULL);
+insert into customer values ("14", "Peter", "Griffens", "Providence", "987-4567",NULL);
+
+insert into purchase values ("21","99",20);
+insert into purchase values ("21","12",14);
+insert into purchase values ("21","66",10);
+insert into purchase values ("31","99",1);
+insert into purchase values ("31","12",2);
+insert into purchase values ("31","78",4);
+insert into purchase values ("31","66",2);
+insert into purchase values ("15","66",2);
+insert into purchase values ("15","78",2);
+insert into purchase values ("14","66",19);
+
+update customer set agentid="99" where firstname in ("Homer","Monty","Peter");
+update customer set agentid="33" where firstname="Super";
+update customer set agentid="11" where firstname in ("Barney","Fred");
+update customer set agentid="66" where firstname = "Sideshow";
+
+select * from product;
+select * from agent;
+select * from customer;
+select * from purchase;
+
+update customer set firstname="Wonder",
+lastname="Woman" where firstname="Super" and lastname="Man";
+
+update purchase set quantity=5 where customerid = 
+(select customerid from customer where firstname="Sideshow");
+
+update customer set city="Boston" where agentid=
+(select agentid from agent where firstname="Regis");
+
+select * from product;mor
+select * from agent;
+select * from customer;
+select * from purchase;
